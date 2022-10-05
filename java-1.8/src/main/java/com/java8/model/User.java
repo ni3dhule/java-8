@@ -3,15 +3,25 @@ package com.java8.model;
 import java.sql.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
 
+	@JsonProperty("user_id")
 	private int userId;
+	@JsonProperty("first_name")
 	private String firstName;
+	@JsonProperty("last_name")
 	private String lastName;
+	@JsonProperty("gender")
 	private String gender;
+	@JsonProperty("country")
 	private String country;
+	@JsonProperty("age")
 	private int age;
-	private Date date;
+	@JsonProperty("date")
+	private String date;
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -48,10 +58,10 @@ public class User {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	@Override
