@@ -24,7 +24,7 @@ public class ExcelProcessor {
 
 	final static Map<String, Object> cache = new HashMap<>();
 
-	public static void loadJsonFile() throws IOException {
+	public static Map<String, Object> loadJsonFile() throws IOException {
 
 		InputStream is = new Object() {}.getClass().getClassLoader().getResourceAsStream("users_details.json");
 		//System.out.println("I/P Object : " + is);
@@ -39,6 +39,8 @@ public class ExcelProcessor {
 		for (User user : listUsers) {
 			System.out.println(user);
 		}
+		cache.put("users", listUsers);
+		return cache;
 	}
 
 }
