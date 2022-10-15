@@ -19,15 +19,7 @@ public class Application {
 	
 	ApplicationContextProvider appContextProvider;
 	
-	private static Map<String, Object> contextCache = null;
-	
 	public static void main(String[] args) {
-		System.out.println("Loading the json file :::");
-		try {
-			contextCache = ExcelProcessor.loadJsonFile();
-		} catch (Exception e) {
-			System.out.println("Exception Occured : "+e);
-		}
 		SpringApplication.run(Application.class, args);
 	}
 
