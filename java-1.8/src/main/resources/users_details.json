@@ -1,14 +1,5 @@
 [
  {
-   "first_name": "First Name",
-   "last_name": "Last Name",
-   "gender": "Gender",
-   "country": "Country",
-   "age": "Age",
-   "date": "Date",
-   "user_id": "Id"
- },
- {
    "first_name": "Dulce",
    "last_name": "Abril",
    "gender": "Female",
