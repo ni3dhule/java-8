@@ -1,6 +1,5 @@
 package com.java8.model;
 
-import java.sql.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
