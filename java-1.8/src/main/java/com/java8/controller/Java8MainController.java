@@ -1,8 +1,10 @@
 package com.java8.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.java8.config.ApplicationContextProvider;
+import com.java8.model.User;
 import com.java8.util.ExcelProcessor;
 
 @RestController
@@ -30,33 +33,28 @@ public class Java8MainController {
 		System.out.println("Loading the json file :::");
 		try {
 			contextCache = ExcelProcessor.loadJsonFile();
-			(applicationContextProvider.getApplicationContext()).se
 		} catch (Exception e) {
 			System.out.println("Exception Occured : "+e);
 		}
-		/*response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        // send HTML page to client
-        out.println("<html>");
-        out.println("<head><title>A Test Servlet</title></head>");
-        out.println("<body>");
-        out.println("<h1>Test</h1>");
-        out.println("<p>Simple servlet for testing.</p>");
-        out.println("</body></html>");*/
-		//return "Home page loaded successfully";
         return contextCache.toString();
 	}
 	
-	/*
-	 	response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        // send HTML page to client
-        out.println("<html>");
-        out.println("<head><title>A Test Servlet</title></head>");
-        out.println("<body>");
-        out.println("<h1>Test</h1>");
-        out.println("<p>Simple servlet for testing.</p>");
-        out.println("</body></html>");
-	 */
+	@GetMapping("user/males")
+	@SuppressWarnings("unchecked")
+	public List<User> maleUsers(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("HTTP Request details : "+request.toString());
+		List<User> result = null;
+		try {
+			contextCache = ExcelProcessor.loadJsonFile();
+			List<User> alUsers = (List<User>) contextCache.get("users");
+			Stream<User> stm = alUsers.stream();
+			List<User> resultMales = stm.filter(user -> user.getGender().equalsIgnoreCase("Male")).collect(Collectors.toList());
+			System.out.println("Males User : "+resultMales);
+			result = resultMales;
+		} catch (Exception e) {
+			System.out.println("Exception Occured : "+e);
+		}
+		return result;
+	}
 	
 }
