@@ -13,9 +13,7 @@ import com.java8.config.ApplicationContextProvider;
 @ComponentScan
 @Configuration
 public class Application {
-	
 	ApplicationContextProvider appContextProvider;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
